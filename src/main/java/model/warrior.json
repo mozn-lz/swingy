@@ -1,0 +1,41 @@
+{
+	"hero":
+	[
+		{
+			"Hero name": "Name1",
+			"Hero class": "class",
+			"Level": 0,
+			"Experience": 0,
+			"Attack": 50,
+			"Defense": 50,
+			"Hit Points": 50
+		},
+		{
+			"Hero name": "Name2",
+			"Hero class": "class",
+			"Level": 0,
+			"Experience": 0,
+			"Attack": 50,
+			"Defense": 50,
+			"Hit Points": 50
+		},
+		{
+			"Hero name": "Name3",
+			"Hero class": "class",
+			"Level": 0,
+			"Experience": 0,
+			"Attack": 50,
+			"Defense": 50,
+			"Hit Points": 50
+		},
+		{
+			"Hero name": "Name4",
+			"Hero class": "class",
+			"Level": 0,
+			"Experience": 0,
+			"Attack": 50,
+			"Defense": 50,
+			"Hit Points": 50
+		}
+	]
+}

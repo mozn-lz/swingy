@@ -28,6 +28,19 @@ public class GuiMain extends JFrame {
 		heroList.add(heroListTitle);
 		heroList.setBackground(Color.GRAY);
 		heroList.setBorder(BorderFactory.createLoweredBevelBorder());
+		//	list start
+			DefaultListModel listModel = new DefaultListModel();
+				listModel.addElement("Jasmine Mehra");
+				listModel.addElement("Ankit Mishra");
+				listModel.addElement("Madhuri Sanghvi");
+				listModel.addElement("Alok Kumar");
+				listModel.addElement("Rohit Bothra");
+				listModel.addElement("Rahul Aggarwal");
+		
+			//Create the list and put it in a scroll pane.
+			JList list = new JList(listModel); 	
+		//	List End
+			heroList.add(list);
 		getContentPane().add(heroList);
 
 		JPanel heroStats = new JPanel();
