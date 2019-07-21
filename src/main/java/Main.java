@@ -1,4 +1,4 @@
-import view.GuiMain;
+import view.SelectPlayer;
 
 public class Main {
 	public static void main(String[] args) {
@@ -15,7 +15,7 @@ public class Main {
 //				break;
 //			case "gui":
 				System.out.println("you chose gui");
-				new GuiMain();
+				new SelectPlayer();
 //				break;
 //			default:
 //				System.out.println("Your choice in insignificant to me, exiting...");
