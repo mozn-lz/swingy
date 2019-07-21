@@ -66,6 +66,7 @@ public class SelectPlayer extends JFrame {
 				System.out.println("newHero = " + newHero);
 				if (newHero != null) {
 					// a = a.replaceAll("\\s","");
+					new newGame();
 					JOptionPane.showMessageDialog(null, newHero + "... fearsome name.");
 				} else {
 					JOptionPane.showMessageDialog(null, "It appears there is an error on your Heroes name");
