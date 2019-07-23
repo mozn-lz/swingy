@@ -12,3 +12,44 @@ Hero stats are affected by the hero level and artifacts. There are 3 types of ar
 • Weapon - increases the attack
 • Armor - increases defense
 • Helm - increases hit points
+
+Create a hero / Select a previously created hero.
+
+
+
+
+
+
+In either case, the player can see the hero stats:
+
+HeroName: NAME
+HeroClass: cls
+Level: 2
+Experience: 0
+Attack: 50
+Defense: 50
+HitPoints: 50
+
+FORMAT
+HeroName HeroClass Level Experience Attack Defense HitPoints
+
+Hero stats are affected by the hero level and artifacts. There are 3 types of artefacs:
+• Weapon - increases the attack
+• Armor - increases defense
+• Helm - increases hit points
+
+
+.replaceAll("\\s","")
+
+
+
+    private JTextField heroNameTextField;
+
+
+HeroName
+HeroClass
+Level
+Experience
+Attack
+Defense
+HitPoints
