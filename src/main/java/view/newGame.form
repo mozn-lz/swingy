@@ -60,6 +60,7 @@
         </constraints>
         <properties>
           <columns value="15"/>
+          <text value=""/>
         </properties>
       </component>
       <component id="80fb8" class="javax.swing.JTextField" binding="textField3" default-binding="true">

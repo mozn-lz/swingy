@@ -7,18 +7,12 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class SelectPlayer extends JFrame {
+public class SelectPlayer  {
 
 	public SelectPlayer() {
-		createMap();
-		setSize(new Dimension(800, 600));
-		setLocationRelativeTo(null);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setTitle("Swingy");
-		setResizable(false);
-		setVisible(true);
 	}
 
+	JPanel selectPlayerPanel = new JPanel();
 	JPanel heroListPanel = new JPanel();
 	JLabel heroListTitle = new JLabel("Our Brave Heroes");
 	JPanel heroStatsPanel = new JPanel();
@@ -34,7 +28,7 @@ public class SelectPlayer extends JFrame {
 		"Naruto	Ninja	0	0	50	40	40", "Sitama	Human	0	0	100	10	100",
 		"Eren	Titan	0	0	40	40	30","Kirito	Gamer	0	0	30	70	50"};
 
-	private void createMap() {
+	public void createMap() {
 /**************************** HERO LIST PANEL ****************************/
 		heroListPanel.add(heroListTitle);
 		heroListPanel.setBackground(Color.GRAY);
@@ -66,19 +60,17 @@ public class SelectPlayer extends JFrame {
 				System.out.println("newHero = " + newHero);
 				if (newHero != null) {
 					// a = a.replaceAll("\\s","");
-					new newGame();
+					new CreatePlayer();
 					JOptionPane.showMessageDialog(null, newHero + "... fearsome name.");
 				} else {
 					JOptionPane.showMessageDialog(null, "It appears there is an error on your Heroes name");
 				}
 			}
 		});
-		getContentPane().add(heroListPanel);
 /**************************** HERO STATS PANEL ****************************/
 		heroStatsPanel.add(heroStatsTitle);
 		heroStatsPanel.setBackground(Color.GRAY);
 		heroStatsPanel.setBorder(BorderFactory.createLoweredBevelBorder());
-		getContentPane().add(heroStatsPanel);
 		//	+Jtextarea Start
 		diaplayStats.setEnabled(false);
 		heroStatsPanel.add(diaplayStats);
@@ -94,9 +86,9 @@ public class SelectPlayer extends JFrame {
 				}
 			}
 		});
-		add(heroListPanel);
-		add(heroStatsPanel);
-		setLayout(new GridLayout(1,2, 5, 1));
+		selectPlayerPanel.add(heroListPanel);
+		selectPlayerPanel.add(heroStatsPanel);
+		selectPlayerPanel.setLayout(new GridLayout(1,2, 5, 1));
 	}
 
 //	SELECT HERO ACTIONLISTNER
