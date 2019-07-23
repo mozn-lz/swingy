@@ -1,8 +1,16 @@
 # Compiled class file
 *.class
 
+#intelij Generated Files
+.idea*
+swingy.iml
+.classpath
+.project
+.settings*
+intelijSwingy
+
 # Log file
-*.log
+i*.log
 
 # BlueJ files
 *.ctxt
