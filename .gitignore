@@ -3,6 +3,7 @@
 
 #intelij Generated Files
 .idea*
+.idea/*
 swingy.iml
 .classpath
 .project
