@@ -60,7 +60,10 @@ public class SelectPlayer  {
 				System.out.println("newHero = " + newHero);
 				if (newHero != null) {
 					// a = a.replaceAll("\\s","");
-					new CreatePlayer();
+					System.out.println("going to CreatePlayer()");
+//					selectPlayerPanel.setLayout(new GridLayout(1,2, 5, 1));
+					new GuiMain("CreatePlayer");
+//					selectPlayerPanel.add();
 					JOptionPane.showMessageDialog(null, newHero + "... fearsome name.");
 				} else {
 					JOptionPane.showMessageDialog(null, "It appears there is an error on your Heroes name");
