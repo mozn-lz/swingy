@@ -33,6 +33,7 @@ public class CreatePlayer {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Going back to Select Player");
+				new GuiMain("selectPlayer");
 			}
 		});
 	}
