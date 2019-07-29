@@ -59,11 +59,8 @@ public class SelectPlayer  {
 				String newHero = createHeroTexfield.getText().replaceAll("\\s","");
 				System.out.println("newHero = " + newHero);
 				if (newHero != null) {
-					// a = a.replaceAll("\\s","");
 					System.out.println("going to CreatePlayer()");
-//					selectPlayerPanel.setLayout(new GridLayout(1,2, 5, 1));
 					new GuiMain("CreatePlayer");
-//					selectPlayerPanel.add();
 					JOptionPane.showMessageDialog(null, newHero + "... fearsome name.");
 				} else {
 					JOptionPane.showMessageDialog(null, "It appears there is an error on your Heroes name");

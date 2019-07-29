@@ -19,10 +19,6 @@ public class CreatePlayer {
 	private JLabel createPlayer;
 
 	public CreatePlayer() {
-		System.out.println("1. Hello from CreatePlayer() super.selectPlayerPanel.add(this.heroDetails)");
-//		super.selectPlayerPanel.add(this.heroDetails);
-		System.out.println("2. Hello from CreatePlayer() super.selectPlayerPanel.add(this.heroDetails)");
-
 		saveButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
