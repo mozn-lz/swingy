@@ -19,7 +19,7 @@ public class Main {
 				System.out.println("you chose gui");
 				// new SelectPlayer();
 				new GuiMain("selectPlayer");
-				CreatePlayer player = new CreatePlayer();
+				// CreatePlayer player = new CreatePlayer();
 //				play
 //				break;
 //			default:
