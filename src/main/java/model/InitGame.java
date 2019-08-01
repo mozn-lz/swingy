@@ -1,11 +1,17 @@
 package model;
 
+import view.DrawMap;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class InitGame {
-    public InitGame(String heroName) {
-        System.out.println("heroName = " + heroName);
+    public InitGame() {
+        Hero hero = new Hero();
+        int mapSize = setMapSize(hero.heroLevel);
+        hero.setCoordenateX((mapSize/2));
+        hero.setCoordenateY((mapSize/2));
+        new DrawMap(mapSize);
     }
 //    private ArrayList <String> hero = new ArrayList<String>();
 
