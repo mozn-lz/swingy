@@ -1,3 +1,10 @@
+select/createHero <+>
+            -> startGame 
+                        -> createMap <+>
+                                    -> placeCharecters
+
+
+
  Create a hero
 • Select a previously created hero.
 In either case, the player can see the hero stats:
