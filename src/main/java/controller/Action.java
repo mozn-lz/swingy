@@ -2,13 +2,16 @@ package controller;
 
 import model.Hero;
 import model.PlayGame;
+import model.Terminate;
 
 import java.util.Scanner;
 
 public class Action {
     Hero hero = new Hero();
-    public Action() {
-//        Action act = new Action();
+    public Action(){
+
+    }
+    public void doSomething() {
         String choice = null;
         Scanner input = new Scanner(System.in);
 
@@ -23,7 +26,7 @@ public class Action {
                     run(hero);
                     break;
                 default:
-//                    System.out.println("Invalid option");
+                    System.out.println("*    *   *  * * Invalid command '" + choice +"' * *  *   *    *");
                     choice = null;
             }
         }
@@ -38,33 +41,44 @@ public class Action {
             direction = in.nextLine();
             switch (direction.toLowerCase()) {
                 case"w":
-//                    System.out.println("hero.getCoordenateY() = " + hero.getCoordenateY());
+                    if (hero.getCoordenateY() -1 <= 0){
+                        new Terminate("win");
+                    }
                     if (map[hero.getCoordenateY() -1][hero.getCoordenateX()] == "E") {
-                        new Action();
+                        doSomething();
                     }
                     map[hero.getCoordenateY()][hero.getCoordenateX()] = "*";
                     hero.setCoordenateY(hero.getCoordenateY() -1);
                     map[hero.getCoordenateY()][hero.getCoordenateX()] = "H";
                     break;
                 case"a":
+                    if (hero.getCoordenateX() -1 <= 0){
+                        new Terminate("win");
+                    }
                     if (map[hero.getCoordenateY()][hero.getCoordenateX() -1] == "E") {
-                        new Action();
+                        doSomething();
                     }
                     map[hero.getCoordenateY()][hero.getCoordenateX()] = "*";
                     hero.setCoordenateX(hero.getCoordenateX() -1);
                     map[hero.getCoordenateY()][hero.getCoordenateX()] = "H";
                     break;
                 case"s":
+                    if (hero.getCoordenateY() + 1 >= map.length){
+                        new Terminate("win");
+                    }
                     if (map[hero.getCoordenateY() + 1][hero.getCoordenateX()] == "E") {
-                        new Action();
+                        doSomething();
                     }
                     map[hero.getCoordenateY()][hero.getCoordenateX()] = "*";
                     hero.setCoordenateY(hero.getCoordenateY() + 1);
                     map[hero.getCoordenateY()][hero.getCoordenateX()] = "H";
                     break;
                 case"d":
+                    if (hero.getCoordenateX() + 1 >= map.length){
+                        new Terminate("win");
+                    }
                     if (map[hero.getCoordenateY()][hero.getCoordenateX() + 1] == "E") {
-                        new Action();
+                        doSomething();
                     }
                     map[hero.getCoordenateY()][hero.getCoordenateX()] = "*";
                     hero.setCoordenateX(hero.getCoordenateX() + 1);
@@ -86,6 +100,7 @@ public class Action {
         } else if (hero.getDefense() <= 0) {		// if hero gets Killed
             hero.setExp(0);
             hero.setDefense(0);
+            new Terminate("dead");
         }
     }
 
@@ -100,6 +115,7 @@ public class Action {
         } else if (hero.getDefense() <= 0) {		// if hero gets Killed
             hero.setExp(0);
             hero.setDefense(0);
+            new Terminate("dead");
         }
     }
 }

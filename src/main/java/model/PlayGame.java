@@ -1,11 +1,9 @@
 package model;
 
 import controller.Action;
-import view.DrawMap;
+import view.console.DrawMap;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.*;
+import java.util.Scanner;
 /*
 In either case, the player can see the hero stats:
 	 	• Hero name
@@ -30,26 +28,26 @@ Hero stats are affected by the hero level and artifacts. There are 3 types of ar
  */
 
 public class PlayGame {
-	Action act = new Action();
-//	Hero hero = new Hero();
+	Action action = new Action();
 	boolean endGame = false;
+	Scanner in = new Scanner(System.in);
+	String levelUpStats = null;
 
 	public PlayGame(Hero hero, String[][] map, int mapSize) {
-		while (endGame == false) {
-			new DrawMap(map, mapSize);
-			act.move(hero, map);
-			if (hero.getCoordenateY() < 0 || hero.getCoordenateY() > mapSize || hero.getCoordenateX() < 0 || hero.getCoordenateX() > mapSize) {
-				System.out.println("Congradualtions, You survived this round!!!");
-				System.out.println("*hero.getCoordenateY() = " + hero.getCoordenateY());
-				System.out.println("*hero.getCoordenateX() = " + hero.getCoordenateX());
-				System.out.println("mapSize = " + mapSize);
-				System.out.println("hero.getDefense()	  = " + hero.getDefense());
-				System.out.println("hero.getExp()		  = " + hero.getExp());
-				System.out.println("hero.getAttack()	  = " + hero.getAttack());
+		System.out.println("Current stats:\n\tHero Defense : " + hero.getDefense() + "\t\t" + "Hero Exp : " + hero.getExp() + "\t\t" + "Hero Attack : " + hero.getAttack());
+		System.out.println("Do you want to increase your player stats?  yes(Y)");
+		levelUpStats = in.nextLine();
+		System.out.println("levelUpStats = " + levelUpStats.toLowerCase());
+//		if (levelUpStats.toLowerCase() == "y") {
+			new Shop();
+//		}
 
-				endGame = true;
-				System.out.println();
-			}
+		while (endGame == false) {
+            System.out.println("\n\n\n\n");
+            System.out.println("Level : " + hero.getHeroLevel());
+			new DrawMap(map, mapSize);
+            System.out.println("Hero Defense : " + hero.getDefense() + "\t\t" + "Hero Exp : " + hero.getExp() + "\t\t" + "Hero Attack : " + hero.getAttack() + "\n");
+			action.move(hero, map);
 		}
 		System.out.println("Exiting for no reason");
 	}

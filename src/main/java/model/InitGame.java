@@ -1,10 +1,5 @@
 package model;
 
-import controller.Action;
-import view.DrawMap;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class InitGame {
@@ -27,7 +22,7 @@ public class InitGame {
     }
 
     public void createMap(int size) {
-        Hero hero = new Hero();
+//        Hero hero = new Hero();
 
         int enemyCout = size/3;
         boolean findIndicator = false;
@@ -62,9 +57,9 @@ public class InitGame {
             }
             System.out.println();
         }
-        if (findIndicator == true) {
-            new Action();
-        }
+//        if (findIndicator == true) {
+//            new Action();
+//        }
     }
 
     private int getEnemy(int max) {

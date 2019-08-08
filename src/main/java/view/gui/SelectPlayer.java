@@ -1,4 +1,7 @@
-package view;
+package view.gui;
+
+import model.InitHero;
+import view.GuiMain;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -12,7 +15,7 @@ public class SelectPlayer  {
 	public SelectPlayer() {
 	}
 
-	JPanel selectPlayerPanel = new JPanel();
+	public JPanel selectPlayerPanel = new JPanel();
 	JPanel heroListPanel = new JPanel();
 	JLabel heroListTitle = new JLabel("Our Brave Heroes");
 	JPanel heroStatsPanel = new JPanel();
@@ -22,11 +25,15 @@ public class SelectPlayer  {
 	JList  heroJList = new JList();
 	String chosenHero = null;
 	String[] heroes = {"Ichigo", "Vegeta", "Naruto", "Sitama", "Eren", "Kirito"};
-	String[] demoHeroes = {
-		// name  cls   lv   xp  At  Df  ht
-		"Ichigo	death	0	0	50	20	40", "Vegeta	Saiyan	0	0	50	40	40", 
-		"Naruto	Ninja	0	0	50	40	40", "Sitama	Human	0	0	100	10	100",
-		"Eren	Titan	0	0	40	40	30","Kirito	Gamer	0	0	30	70	50"};
+//	String[] demoHeroes = {
+//		// name  cls   lv   xp  At  Df  ht
+//		"Ichigo	death	0	0	50	20	40", "Vegeta	Saiyan	0	0	50	40	40",
+//		"Naruto	Ninja	0	0	50	40	40", "Sitama	Human	0	0	100	10	100",
+//		"Eren	Titan	0	0	40	40	30","Kirito	Gamer	0	0	30	70	50"}
+//		;
+
+        String [] demoHeroes = new InitHero().getHeroes();      // untested code    -> if any errors delete this and uncomment above
+//        String[] heroes  = new InitHero().getHeroes().names;
 
 	public void createMap() {
 /**************************** HERO LIST PANEL ****************************/

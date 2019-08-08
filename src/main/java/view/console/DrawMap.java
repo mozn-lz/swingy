@@ -1,9 +1,4 @@
-package view;
-
-import controller.Action;
-import model.Hero;
-
-import java.util.Random;
+package view.console;
 
 public class DrawMap {
 	public DrawMap(String[][] map, int max ) {

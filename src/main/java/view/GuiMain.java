@@ -1,6 +1,8 @@
 package view;
 
 import view.gui.CreatePlayer;
+import view.gui.SelectPlayer;
+
 import javax.swing.*;
 import java.awt.*;
 
