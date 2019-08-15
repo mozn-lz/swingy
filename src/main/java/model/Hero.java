@@ -88,7 +88,9 @@ public class Hero {
 	public void setDefense(int defense) {
 		this.defense = defense;
 		if (this.defense < 0) {
-			dead();
+//			dead();
+			System.out.println("You died, Your health is below 0. ");
+			new InitGame();
 		} else if (this.defense > 100) {
 			this.defense = 100;
 		}

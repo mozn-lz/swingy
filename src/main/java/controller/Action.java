@@ -23,7 +23,7 @@ public class Action {
                     run(hero);
                     break;
                 default:
-//                    System.out.println("Invalid option");
+                    System.out.println("Invalid option");
                     choice = null;
             }
         }
