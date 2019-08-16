@@ -2,54 +2,71 @@ package model;
 
 import controller.Action;
 import view.console.DrawMap;
+import view.console.PrintContent;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.Scanner;
-/*
-In either case, the player can see the hero stats:
-	 	• Hero name
-		• Hero class
-		• Level
-		• Experience
-		• Attack
-		• Defense
-		• Hit Points
-
-Hero stats are affected by the hero level and artifacts. There are 3 types of artefacs:
-		• Weapon - increases the attack
-		• Armor - increases defense
-		• Helm - increases hit points
-*/
-
-/**
- * "Hero name" "Hero class" "Level" "Experience" "Attack" "Defense" "Hit Points"
- * 
- * "Weapon" "Armor" "Hel
- * 
- */
 
 public class PlayGame {
 	Action action = new Action();
 	boolean endGame = false;
 	Scanner in = new Scanner(System.in);
-	String levelUpStats = null;
+	String choice= null;
+//	public static PrintWriter writer = null;
 
 	public PlayGame(Hero hero, String[][] map, int mapSize) {
-		System.out.println("Current stats:\n\tHero Defense : " + hero.getDefense() + "\t\t" + "Hero Exp : " + hero.getExp() + "\t\t" + "Hero Attack : " + hero.getAttack());
-		System.out.println("Do you want to increase your player stats?  yes(Y)");
-		levelUpStats = in.nextLine();
-		System.out.println("levelUpStats = " + levelUpStats.toLowerCase());
-//		if (levelUpStats.toLowerCase() == "y") {
-			new Shop();
+//		try {
+//			writer = new PrintWriter(new File("./simulation.txt"));
+//			for (int i = 0; i <arrHeroes.size() ; i++) {
+//				writer.write(arrHeroes(i));
+//				writer.flush();
+//			}
+//			writer.close(); // close file writer
+//		} catch (FileNotFoundException e) {
+//			e.printStackTrace();
 //		}
 
+		for (boolean i = false; i == false; ) {
+			if (hero.getName() != null){
+				new PrintContent("Current stats:\n\tHero Defense : " + hero.getDefense() + "\t\t" + "Hero Exp : " + hero.getExp() + "\t\t" + "Hero Attack : " + hero.getAttack());
+			}
+			new PrintContent("'Select' to Select hero\n'shop' to Increase hero stats\n'start' to Start Game and \n'exit' to exit");
+			choice = in.nextLine();
+			switch (choice.toLowerCase()) {
+				case "select":
+					new InitHero().selectHero();
+					break;
+				case "shop":
+					if (hero.getName() != null) {
+						new Shop();
+					} else {
+						new PrintContent("Please select hero first");
+					}
+					break;
+				case "start":
+					if (hero.getName() != null) {
+						startGame(hero, map, mapSize);
+					} else {
+						new PrintContent("Please select hero first");
+					}
+					break;
+				case "exit":
+					new Terminate("exit");
+					new PrintContent("Exiting game...");
+				default: new PrintContent("Invalid choice");
+			}
+		}
+		new PrintContent("Exiting Game");
+	}
+	private void startGame(Hero hero, String[][] map, int mapSize){
 		while (endGame == false) {
-            System.out.println("\n\n\n\n");
-            System.out.println("Level : " + hero.getHeroLevel());
+			new PrintContent("\n\n\n\n");
+			new PrintContent("Level : " + hero.getHeroLevel());
 			new DrawMap(map, mapSize);
-            System.out.println("Hero Defense : " + hero.getDefense() + "\t\t" + "Hero Exp : " + hero.getExp() + "\t\t" + "Hero Attack : " + hero.getAttack() + "\n");
+			new PrintContent("Hero Defense : " + hero.getDefense() + "\t\t" + "Hero Exp : " + hero.getExp() + "\t\t" + "Hero Attack : " + hero.getAttack() + "\n");
 			action.move(hero, map);
 		}
-		System.out.println("Exiting for no reason");
 	}
-
 }

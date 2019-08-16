@@ -1,12 +1,16 @@
 package model;
 
+import view.console.PrintContent;
+import view.gui.SelectPlayer;
+
 import java.util.Random;
 
-public class InitGame {
+public class InitGame<playMode> {
 
     Hero hero = new Hero();
     int mapSize = setMapSize(hero.heroLevel);
     private String[][] map = new String[mapSize][mapSize];
+    private static int playMode = 0;
 
     public InitGame() {
         hero.setCoordenateX(mapSize/2);
@@ -15,17 +19,33 @@ public class InitGame {
         new PlayGame(hero, map, mapSize);
     }
 
-    public int setMapSize(int level) {
+	public InitGame(String arg) {
+        hero.setCoordenateX(mapSize/2);
+        hero.setCoordenateY(mapSize/2);
+        createMap(mapSize);
+        switch (arg) {
+            case "console" :
+                playMode = 0;
+                new InitGame();
+                break;
+            case "gui":
+                playMode = 1;
+                new SelectPlayer();
+                break;
+            default:
+                new PrintContent("Load error, exiting ...");
+//                terminate()
+        }
+	}
+
+	public int setMapSize(int level) {
         int mapSize = (level - 1) * 5 + 10 - (level % 2);
-        System.out.println("mapSize = " + mapSize);
+        hero.setMapSize(mapSize);
         return (mapSize);
     }
 
     public void createMap(int size) {
-//        Hero hero = new Hero();
-
         int enemyCout = size/3;
-        boolean findIndicator = false;
         String heroSym = "H";
         String enemySym = "E";
         String blank = "*";
@@ -33,33 +53,24 @@ public class InitGame {
         if (enemyCout <= 0){
             enemyCout++;
         }
-        System.out.println("enemyCout = " + enemyCout);
         int enemies[] = new int [enemyCout];
-        new Random(size);
-
         for (int i = 0; i < size; i++) {
-            for (int l = 0; l < enemyCout; l++) {
+            for (int l = 0; l < enemyCout; l++) {       //  Get/Create enemy locations
                 enemies[l] = getEnemy(size);
             }
-            for (int j = 0; j < size; j++) {
-                for (int k = 0; k < enemyCout; k++) {		// if hero position
-                    if ((i == hero.getCoordenateY() && j == hero.getCoordenateX()) && (j == enemies[k])) {       //  if an enemy is encoutered
-                        findIndicator = true;
-                    }
-                    if (i == hero.getCoordenateY() && j == hero.getCoordenateX()) {
-                        map[i][j] = heroSym;
-                    } else if (j == enemies[k]) {    // if enemy position
+            for (int j = 0; j < size; j++) {        //  PLACE COMPONENTS ONTO MAP
+                map[i][j] = blank;
+                for (int k = 0; k < enemyCout; k++) {
+                    if (j == enemies[k]) {    // if enemy position
                         map[i][j] = enemySym;
-                    } else {
-                        map[i][j] = blank;
                     }
                 }
+                if (i == hero.getCoordenateY() && j == hero.getCoordenateX()) {		// if hero position
+                    map[i][j] = heroSym;
+                }
             }
-            System.out.println();
+//            new PrintContent();
         }
-//        if (findIndicator == true) {
-//            new Action();
-//        }
     }
 
     private int getEnemy(int max) {

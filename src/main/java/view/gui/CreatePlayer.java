@@ -1,6 +1,7 @@
 package view.gui;
 
 import view.GuiMain;
+import view.console.PrintContent;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,13 +25,13 @@ public class CreatePlayer {
 		saveButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("heroNameTextField = " + heroNameTextField.getText());
+				new PrintContent("heroNameTextField = " + heroNameTextField.getText());
 			}
 		});
 		backButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("Going back to Select Player");
+				new PrintContent("Going back to Select Player");
 				new GuiMain("selectPlayer");
 			}
 		});

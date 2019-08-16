@@ -1,5 +1,6 @@
 package view;
 
+import view.console.PrintContent;
 import view.gui.CreatePlayer;
 import view.gui.SelectPlayer;
 
@@ -9,23 +10,23 @@ import java.awt.*;
 public class GuiMain extends JFrame {
 
     public GuiMain(String panel) {
-        System.out.println("Hello from GuiMain");
-        System.out.println("1. panel = " + panel);
-        System.out.println("2. panel = " + panel);
+        new PrintContent("Hello from GuiMain");
+        new PrintContent("1. panel = " + panel);
+        new PrintContent("2. panel = " + panel);
         switch (panel) {
             case "selectPlayer":
-                System.out.println("going to selectPlayer()");
-                System.out.println("panel = " + panel);
+                new PrintContent("going to selectPlayer()");
+                new PrintContent("panel = " + panel);
                 SelectPlayer selectPlayer = new SelectPlayer();
                 selectPlayer.createMap();
                 getContentPane().add(selectPlayer.selectPlayerPanel);
             break;
             case "CreatePlayer":
-                System.out.println("panel = " + panel);
+                new PrintContent("panel = " + panel);
                 getContentPane().add(new CreatePlayer().heroDetails);
             break;
             default:
-                System.out.println("Done");
+                new PrintContent("Done");
         }
         setSize(new Dimension(800, 600));
         setLocationRelativeTo(null);

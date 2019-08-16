@@ -2,6 +2,7 @@ package view.gui;
 
 import model.InitHero;
 import view.GuiMain;
+import view.console.PrintContent;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -32,7 +33,7 @@ public class SelectPlayer  {
 //		"Eren	Titan	0	0	40	40	30","Kirito	Gamer	0	0	30	70	50"}
 //		;
 
-        String [] demoHeroes = new InitHero().getHeroes();      // untested code    -> if any errors delete this and uncomment above
+        String [] demoHeroes = new InitHero().getHeroes().toArray(new String[0]);      // untested code    -> if any errors delete this and uncomment above
 //        String[] heroes  = new InitHero().getHeroes().names;
 
 	public void createMap() {
@@ -64,9 +65,9 @@ public class SelectPlayer  {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String newHero = createHeroTexfield.getText().replaceAll("\\s","");
-				System.out.println("newHero = " + newHero);
+				new PrintContent("newHero = " + newHero);
 				if (newHero != null) {
-					System.out.println("going to CreatePlayer()");
+					new PrintContent("going to CreatePlayer()");
 					new GuiMain("CreatePlayer");
 					JOptionPane.showMessageDialog(null, newHero + "... fearsome name.");
 				} else {

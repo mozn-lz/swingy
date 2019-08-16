@@ -1,6 +1,9 @@
-import model.Hero;
 import model.InitGame;
 import model.InitHero;
+import view.console.PrintContent;
+
+import java.io.*;
+import java.util.ArrayList;
 
 public class Main {
 	public static void main(String[] args) {
@@ -8,32 +11,52 @@ public class Main {
 				// name  cls   lv   xp  At  Df  ht
 				"Ichigo	death	0	0	50	20	40", "Vegeta	Saiyan	0	0	50	40	40",
 				"Naruto	Ninja	0	0	50	40	40", "Sitama	Human	0	0	100	10	100",
-				"Eren	Titan	0	0	40	40	30","Kirito	Gamer	0	0	30	70	50"};
+				"Erren.	Titan	0	0	40	40	30", "Kirito	Gamer	0	0	30	70	50"};
 
-		System.out.println("Hello Swingy world, did you miss me?");
-//		System.out.println("Do you want to play on the console or gui?");
-//		Scanner scanner = new Scanner(System.in);
-//		String guiChoice = scanner.nextLine();
-//
-//		switch (guiChoice.toLowerCase()) {
-//			case "console":
-//				System.out.println("you chose console");
-//				break;
-//			case "gui":
+		ArrayList<String> arrHeros = new ArrayList<String>();
+		File gameSave = new File(".`./SwingyGameSave.log");		// The name of the file to open.
 
-/*	System.out.println("you chose gui");
-	new GuiMain("selectPlayer");
- */
-		new InitHero().setHeroes(heroes);		//	set push heroes from file to program 'hero lost'
-		new InitGame();
+		if (gameSave.exists()) {
+			// This will reference one line at a time
+			String line = null;
+			try {
+				FileReader fileReader = new FileReader(gameSave);		//	FileReader reads text files in the default encoding.
+				BufferedReader bufferedReader = new BufferedReader(fileReader);			//	Always wrap FileReader in BufferedReader.
 
-				// CreatePlayer player = new CreatePlayer();
-//				play
-//				break;
-//			default:
-//				System.out.println("Your choice in insignificant to me, exiting...");
-//				System.exit(0);
-//		}
-		System.out.println("Main: Swing missed you Mk");
+				while ((line = bufferedReader.readLine()) != null) {
+					String[] parts = line.split("\t");
+					if (parts[0] != null && !parts[0].isEmpty() && parts[1] != null && !parts[1].isEmpty() && isInteger(parts[2]) &&
+							isInteger(parts[3]) && isInteger(parts[4]) && isInteger(parts[5]) && isInteger(parts[6])) {
+						arrHeros.add(line);
+					}
+				}
+				bufferedReader.close();
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} else {
+			new PrintContent("Game save not found... Creating new one.");
+			for (int i = 0; i < heroes.length; i++) {
+				arrHeros.add(heroes[i]);
+			}
+		}
+		new InitHero().setHeroes(arrHeros);        //	set push heroes from file to program 'hero lost'
+//				new InitHero().setHeroes(heroes);		//	set push heroes from file to program 'hero lost'
+		new InitGame("console");
+		new PrintContent("Main: Swing missed you Mk");
+	}
+
+	public static boolean isInteger(String s) {
+		boolean isValidInteger = false;
+		try {
+			Integer.parseInt(s);
+			isValidInteger = true;
+		}
+		catch (NumberFormatException e) {
+			new PrintContent("Error: " + s+ " is not a number :: " + e);
+		}
+		return isValidInteger;
 	}
 }

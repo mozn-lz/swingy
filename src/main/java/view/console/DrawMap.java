@@ -6,7 +6,7 @@ public class DrawMap {
 			for (int j = 0; j < max ; j++) {
 				System.out.print(map[i][j] + "    ");
 			}
-			System.out.println();
+			new PrintContent("\n");
 		}
 	}
 }
