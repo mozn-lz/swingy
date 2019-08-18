@@ -12,14 +12,13 @@ public class Terminate {
     public static PrintWriter writer = null;
 
     public Terminate(String result) {
-//        new PrintContent("into Terminating?");
+        new InitHero().updateHeroes(hero);
+        ArrayList<String> arrListHeroes = new InitHero().getHeroes();
 
-        InitHero initHero = new InitHero();
-        initHero.updateHeroes(hero);
-        ArrayList<String> arrListHeroes = initHero.getHeroes();
-
+        //        WRITE PLAYER DATA TO FILE
         try {
-            writer = new PrintWriter(new File("../simulation.txt"));
+            System.out.println("writing");
+            writer = new PrintWriter(new File("../SwingyGameSave.log"));
             for (int i = 0; i < arrListHeroes.size(); i++) {
                 writer.write(arrListHeroes.get(i) + "\n");
                 writer.flush();
@@ -28,7 +27,8 @@ public class Terminate {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        switch (result){
+
+        switch (result) {
             case "dead":
                 new PrintContent("Your dead. Your defence is " + hero.getDefense());
                 break;
@@ -42,7 +42,6 @@ public class Terminate {
             default:
                 new PrintContent("lol, minor crush, the game will restart now.");
         }
-
         new InitGame();
     }
 }

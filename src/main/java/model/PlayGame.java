@@ -6,6 +6,7 @@ import view.console.PrintContent;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
@@ -17,20 +18,22 @@ public class PlayGame {
 //	public static PrintWriter writer = null;
 
 	public PlayGame(Hero hero, String[][] map, int mapSize) {
-//		try {
-//			writer = new PrintWriter(new File("./simulation.txt"));
-//			for (int i = 0; i <arrHeroes.size() ; i++) {
-//				writer.write(arrHeroes(i));
-//				writer.flush();
-//			}
-//			writer.close(); // close file writer
-//		} catch (FileNotFoundException e) {
-//			e.printStackTrace();
-//		}
 
 		for (boolean i = false; i == false; ) {
+			try {
+				final String os = System.getProperty("os.name");
+
+				if (os.contains("Windows")) {
+					Runtime.getRuntime().exec("cls");
+				}
+				else {
+					Runtime.getRuntime().exec("clear");
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 			if (hero.getName() != null){
-				new PrintContent("Current stats:\n\tHero Defense : " + hero.getDefense() + "\t\t" + "Hero Exp : " + hero.getExp() + "\t\t" + "Hero Attack : " + hero.getAttack());
+				new PrintContent("\t\tEXP of " + hero.getExp() + "\t\tLevel"+hero.getHeroLevel() + "\nAtack " + hero.getAttack() +"\t\tDefense "+ hero.getDefense() + "\t\tHelm "+ hero.getHelm());
 			}
 			new PrintContent("'Select' to Select hero\n'shop' to Increase hero stats\n'start' to Start Game and \n'exit' to exit");
 			choice = in.nextLine();
@@ -65,7 +68,8 @@ public class PlayGame {
 			new PrintContent("\n\n\n\n");
 			new PrintContent("Level : " + hero.getHeroLevel());
 			new DrawMap(map, mapSize);
-			new PrintContent("Hero Defense : " + hero.getDefense() + "\t\t" + "Hero Exp : " + hero.getExp() + "\t\t" + "Hero Attack : " + hero.getAttack() + "\n");
+//			new PrintContent("Hero Defense : " + hero.getDefense() + "\t\t" + "Hero Exp : " + hero.getExp() + "\t\t" + "Hero Attack : " + hero.getAttack() + "\n");
+			new PrintContent("\t\tEXP of " + hero.getExp() + "\t\tLevel "+hero.getHeroLevel() + "\nAtack " + hero.getAttack() +"\t\tDefense "+ hero.getDefense() + "\t\tHelm "+ hero.getHelm());
 			action.move(hero, map);
 		}
 	}

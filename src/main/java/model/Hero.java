@@ -15,6 +15,16 @@ public class Hero {
 	static int coordenateY = 0;
 	static int mapSize = 0;
 
+	public static int getIndex() {
+		return index;
+	}
+
+	public static void setIndex(int index) {
+		Hero.index = index;
+	}
+
+	static int index = 0;
+
 	public int getCoordenateX() {
 		return coordenateX;
 	}

@@ -14,7 +14,7 @@ public class Main {
 				"Erren.	Titan	0	0	40	40	30", "Kirito	Gamer	0	0	30	70	50"};
 
 		ArrayList<String> arrHeros = new ArrayList<String>();
-		File gameSave = new File(".`./SwingyGameSave.log");		// The name of the file to open.
+		File gameSave = new File("../SwingyGameSave.log");		// The name of the file to open.
 
 		if (gameSave.exists()) {
 			// This will reference one line at a time
@@ -44,7 +44,16 @@ public class Main {
 		}
 		new InitHero().setHeroes(arrHeros);        //	set push heroes from file to program 'hero lost'
 //				new InitHero().setHeroes(heroes);		//	set push heroes from file to program 'hero lost'
-		new InitGame("console");
+		switch (args[0].toLowerCase()) {
+			case "console":
+				new InitGame("console");
+				break;
+			case "gui":
+				new InitGame("gui");
+				break;
+			default:
+					new InitGame("console");
+		}
 		new PrintContent("Main: Swing missed you Mk");
 	}
 
