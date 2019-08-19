@@ -1,7 +1,7 @@
 package model;
 
 import controller.Action;
-import view.console.DrawMap;
+import view.console.*;
 import view.console.PrintContent;
 
 import java.io.File;

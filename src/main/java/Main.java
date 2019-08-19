@@ -44,7 +44,20 @@ public class Main {
 		}
 		new InitHero().setHeroes(arrHeros);        //	set push heroes from file to program 'hero lost'
 //				new InitHero().setHeroes(heroes);		//	set push heroes from file to program 'hero lost'
-		switch (args[0].toLowerCase()) {
+
+//		System.out.println("args.length = " + args.length);
+
+		String view = null;
+		if (args.length != 1) {
+			view = "console";
+		} else if (args.length == 1) {
+			if (view == "console" || view == "gui") {
+				view = args[0];
+			} else {
+				view = "console";
+			}
+		}
+		switch (view.toLowerCase()) {
 			case "console":
 				new InitGame("console");
 				break;

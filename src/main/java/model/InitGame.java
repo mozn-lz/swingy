@@ -1,11 +1,12 @@
 package model;
 
+import view.GuiMain;
 import view.console.PrintContent;
-import view.gui.SelectPlayer;
+import view.gui.*;
 
 import java.util.Random;
 
-public class InitGame<playMode> {
+public class InitGame {
 
     Hero hero = new Hero();
     int mapSize = setMapSize(hero.heroLevel);
@@ -30,7 +31,8 @@ public class InitGame<playMode> {
                 break;
             case "gui":
                 playMode = 1;
-                new SelectPlayer();
+//                new SelectPlayer();
+                new GuiMain("panel");
                 break;
             default:
                 new PrintContent("Load error, exiting ...");
