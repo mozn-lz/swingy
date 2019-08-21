@@ -3,6 +3,7 @@ package za.wethinkcode.swingy.controller;
 import za.wethinkcode.swingy.model.Enemy;
 import za.wethinkcode.swingy.model.Hero;
 import za.wethinkcode.swingy.model.PlayGame;
+import za.wethinkcode.swingy.model.Save;
 import za.wethinkcode.swingy.model.Terminate;
 import za.wethinkcode.swingy.view.console.PrintContent;
 

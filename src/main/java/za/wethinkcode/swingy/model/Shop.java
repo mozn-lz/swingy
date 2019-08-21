@@ -40,7 +40,9 @@ public class Shop {
 				default:
 					new PrintContent("Invalid option '" + todo + "'");
 			}
+			new Save(hero); 
 		}
+		new PrintContent("\n\n");
 	}
 
 	private void buyWeapon() {

@@ -1,5 +1,4 @@
 package za.wethinkcode.swingy.model;
-
 import za.wethinkcode.swingy.view.console.PrintContent;
 
 public class Hero {

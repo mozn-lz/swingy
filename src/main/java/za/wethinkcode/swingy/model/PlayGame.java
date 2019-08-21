@@ -16,23 +16,14 @@ public class PlayGame {
 	public PlayGame(Hero hero, String[][] map, int mapSize) {
 
 		for (boolean i = false; i == false; ) {
-			new PrintContent("\n\n\n\n");
-			try {
-				final String os = System.getProperty("os.name");
-
-				if (os.contains("Windows")) {
-					Runtime.getRuntime().exec("cls");
-				}
-				else {
-					Runtime.getRuntime().exec("clear");
-				}
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			// new PrintContent("\n\n\n\n");
+			new PrintContent("\t\t************");
+			new PrintContent("\t\t*  SWINGY  *");
+			new PrintContent("\t\t************\n\n");
 			if (hero.getName() != null){
-				new PrintContent(hero.getName() + "\t\tEXP of " + hero.getExp() + "\t\tLevel"+hero.getHeroLevel() + "\nAtack " + hero.getAttack() +"\t\tDefense "+ hero.getDefense() + "\t\tHelm "+ hero.getHelm());
+				new PrintContent(hero.getName() + "\t\tEXP of " + hero.getExp() + "\t\tLevel "+hero.getHeroLevel() + "\nAtack " + hero.getAttack() +"\t\tDefense "+ hero.getDefense() + "\t\tHit Points "+ hero.getHelm());
 			}
-			new PrintContent("'Select' to Select hero\n'shop' to Increase hero stats\n'start' to Start Game and \n'exit' to exit");
+			new PrintContent("'Select' to Select hero\n'shop' to Increase hero stats\n'start' to Start Game and \n'exit' to Exit");
 			choice = in.nextLine();
 			switch (choice.toLowerCase()) {
 				case "select":
@@ -58,14 +49,13 @@ public class PlayGame {
 				default: new PrintContent("Invalid choice");
 			}
 		}
-		new PrintContent("Exiting Game");
 	}
 	private void startGame(Hero hero, String[][] map, int mapSize){
 		while (endGame == false) {
 			new PrintContent("\n\n\n\n");
 			new PrintContent("Level : " + hero.getHeroLevel());
 			new DrawMap(map, mapSize);
-			new PrintContent("\t\tEXP of " + hero.getExp() + "\t\tLevel "+hero.getHeroLevel() + "\nAtack " + hero.getAttack() +"\t\tDefense "+ hero.getDefense() + "\t\tHelm "+ hero.getHelm());
+			new PrintContent(hero.getName() + "\t\tEXP of " + hero.getExp() + "\t\tLevel "+hero.getHeroLevel() + "\nAtack " + hero.getAttack() +"\t\tDefense "+ hero.getDefense() + "\t\tHit Points "+ hero.getHelm());
 			action.move(hero, map);
 		}
 	}

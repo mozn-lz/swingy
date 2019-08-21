@@ -29,6 +29,7 @@ public class App {
 					String[] parts = line.split("\t");
 					if (parts[0] != null && !parts[0].isEmpty() && parts[1] != null && !parts[1].isEmpty() && isInteger(parts[2]) &&
 							isInteger(parts[3]) && isInteger(parts[4]) && isInteger(parts[5]) && isInteger(parts[6])) {
+								// System.out.println( parts[0] + parts[1] +parts[2] + parts[3] + parts[4] + parts[5] + parts[6] );
 						arrHeros.add(line);
 					}
 				}
