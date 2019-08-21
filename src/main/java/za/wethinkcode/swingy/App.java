@@ -1,7 +1,8 @@
 package za.wethinkcode.swingy;
 
-import za.wethinkcode.swingy.model.InitGame;
+// import za.wethinkcode.swingy.model.InitGame;
 import za.wethinkcode.swingy.model.InitHero;
+import za.wethinkcode.swingy.model.PlayGame;
 import za.wethinkcode.swingy.view.console.PrintContent;
 
 import java.io.*;
@@ -29,7 +30,6 @@ public class App {
 					String[] parts = line.split("\t");
 					if (parts[0] != null && !parts[0].isEmpty() && parts[1] != null && !parts[1].isEmpty() && isInteger(parts[2]) &&
 							isInteger(parts[3]) && isInteger(parts[4]) && isInteger(parts[5]) && isInteger(parts[6])) {
-								// System.out.println( parts[0] + parts[1] +parts[2] + parts[3] + parts[4] + parts[5] + parts[6] );
 						arrHeros.add(line);
 					}
 				}
@@ -58,13 +58,13 @@ public class App {
 		}
 		switch (view) {
 			case "console":
-				new InitGame("console");
+				new PlayGame();
 				break;
 			case "gui":
-				new InitGame("gui");
+				new PlayGame();
 				break;
 			default:
-					new InitGame("console");
+				new PlayGame();
 		}
 		new PrintContent("Main: Swing missed you Mk");
 	}

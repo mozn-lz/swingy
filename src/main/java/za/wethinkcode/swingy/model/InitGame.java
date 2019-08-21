@@ -15,36 +15,16 @@ public class InitGame {
 
     public InitGame() {
         hero.setCoordenateX(mapSize/2);
-        hero.setCoordenateY(mapSize/2);
-        createMap(mapSize);
-        new PlayGame(hero, map, mapSize);
-    }
-
-	public InitGame(String arg) {
-        hero.setCoordenateX(mapSize/2);
-        hero.setCoordenateY(mapSize/2);
-        createMap(mapSize);
-        switch (arg) {
-            case "console" :
-                playMode = 0;
-                new InitGame();
-                break;
-            case "gui":
-                playMode = 1;
-                new GuiMain("panel");
-                break;
-            default:
-                new PrintContent("Load error, exiting ...");
-        }
+		hero.setCoordenateY(mapSize/2);
 	}
-
+	
 	public int setMapSize(int level) {
-        int mapSize = (level - 1) * 5 + 10 - (level % 2);
+		int mapSize = (level - 1) * 5 + 10 - (level % 2);
         hero.setMapSize(mapSize);
         return (mapSize);
     }
 
-    public void createMap(int size) {
+    public String[][] createMap(String[][] map, int size) {
         int enemyCout = size/3;
         String heroSym = "H";
         String enemySym = "E";
@@ -69,7 +49,8 @@ public class InitGame {
                     map[i][j] = heroSym;
                 }
             }
-        }
+		}
+		return map;
     }
 
     private int getEnemy(int max) {

@@ -13,15 +13,21 @@ public class PlayGame {
 	Scanner in = new Scanner(System.in);
 	String choice= null;
 
-	public PlayGame(Hero hero, String[][] map, int mapSize) {
-
+	public PlayGame() {
+	
+		Hero hero = new Hero();
+		
 		for (boolean i = false; i == false; ) {
-			// new PrintContent("\n\n\n\n");
+			int mapSize = new InitGame().setMapSize(hero.heroLevel);
+			String[][] map = new String[mapSize][mapSize];
+			map = new InitGame().createMap(map, mapSize);
+			int heroLevel = hero.getHeroLevel();
+
 			new PrintContent("\t\t************");
 			new PrintContent("\t\t*  SWINGY  *");
 			new PrintContent("\t\t************\n\n");
 			if (hero.getName() != null){
-				new PrintContent(hero.getName() + "\t\tEXP of " + hero.getExp() + "\t\tLevel "+hero.getHeroLevel() + "\nAtack " + hero.getAttack() +"\t\tDefense "+ hero.getDefense() + "\t\tHit Points "+ hero.getHelm());
+				new PrintContent(hero.getName() + "\t\tEXP of " + hero.getExp() + "\t\tLevel "+hero.getHeroLevel() + "\nAtack " + hero.getAttack() +"\t\tDefense "+ hero.getDefense() + "\t\tHit Points "+ hero.getHitPoints());
 			}
 			new PrintContent("'Select' to Select hero\n'shop' to Increase hero stats\n'start' to Start Game and \n'exit' to Exit");
 			choice = in.nextLine();
@@ -44,18 +50,22 @@ public class PlayGame {
 					}
 					break;
 				case "exit":
+					new Save(hero);
+					new PrintContent("Exiting game...\n");
 					new Terminate("exit");
-					new PrintContent("Exiting game...");
-				default: new PrintContent("Invalid choice");
+					// return;
+				default: 
+					new PrintContent("Invalid choice");
 			}
 		}
 	}
 	private void startGame(Hero hero, String[][] map, int mapSize){
+		
 		while (endGame == false) {
 			new PrintContent("\n\n\n\n");
 			new PrintContent("Level : " + hero.getHeroLevel());
 			new DrawMap(map, mapSize);
-			new PrintContent(hero.getName() + "\t\tEXP of " + hero.getExp() + "\t\tLevel "+hero.getHeroLevel() + "\nAtack " + hero.getAttack() +"\t\tDefense "+ hero.getDefense() + "\t\tHit Points "+ hero.getHelm());
+			new PrintContent(hero.getName() + "\t\tEXP of " + hero.getExp() + "\t\tLevel "+hero.getHeroLevel() + "\nAtack " + hero.getAttack() +"\t\tDefense "+ hero.getDefense() + "\t\tHit Points "+ hero.getHitPoints());
 			action.move(hero, map);
 		}
 	}

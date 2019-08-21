@@ -21,8 +21,9 @@ public class Terminate {
                 System.exit(0);
                 break;
             default:
-                new PrintContent("lol, minor crush, the game will restart now.");
+                // new PrintContent("2. lol, minor crush, the game will restart now.");
         }
-        new InitGame();
+        // new InitGame();
+        new PlayGame();
     }
 }

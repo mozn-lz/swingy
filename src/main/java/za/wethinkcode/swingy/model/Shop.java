@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 public class Shop {
 	Hero hero = new Hero();
+	Scanner in = new Scanner(System.in);
 
 	public Shop() {
 		/*
@@ -15,13 +16,12 @@ public class Shop {
 		*/
 
 		String todo = null;
-		Scanner in = new Scanner(System.in);
 
 		for (boolean i = false; i == false; ) {
 			new PrintContent("\n\n\n");
 			new PrintContent("\t\t_____Welcome to the SHOP_____\n\t _where you can increase your stats_ ");
-			new PrintContent("\t*EXP : " + hero.getExp() + "*" + "\n\tHelm : " + hero.getHelm() + "\tDefense : " + hero.getDefense() + "\tAttack : " + hero.getAttack() + "\n");
-			new PrintContent("'W' to restore your Weapon(Atack), 'A' to restore Amor(Defense), 'H' to resrore Helm(Hit Points) and 'X' to exit");
+			new PrintContent("\t*EXP : " + hero.getExp() + "*" + "\n\thitPoints : " + hero.getHitPoints() + "\tDefense : " + hero.getDefense() + "\tAttack : " + hero.getAttack() + "\n");
+			new PrintContent("'W' to restore your Weapon(Atack), 'A' to restore Amor(Defense), 'H' to resrore hitPoints(Hit Points) and 'X' to exit");
 			todo = in.nextLine();
 			switch (todo.toLowerCase()) {
 				case "w":
@@ -31,7 +31,7 @@ public class Shop {
 					buyArmor();
 					break;
 				case "h":
-					buyHelm();
+					buyHitPoints();
 					break;
 				case "x":
 					new PrintContent("exiting shop...");
@@ -46,7 +46,7 @@ public class Shop {
 	}
 
 	private void buyWeapon() {
-		Scanner in = new Scanner(System.in);
+		
 		String topUp = null;
 
 		new PrintContent("Would you like to top up your Weapon with your exp?\n yes (Y) no(N)");
@@ -73,7 +73,7 @@ public class Shop {
 		}
 	}
 	private void buyArmor() {
-		Scanner in = new Scanner(System.in);
+
 		String topUp = null;
 
 		new PrintContent("Would you like to top up your Armor with your exp?\n yes (Y) no(N)");
@@ -98,29 +98,29 @@ public class Shop {
 				break;
 		}
 	}
-	private void buyHelm() {
-		Scanner in = new Scanner(System.in);
+	private void buyHitPoints() {
+
 		String topUp = null;
 
-		new PrintContent("Would you like to top up your Helm with your exp?\n yes (Y) no(N)");
+		new PrintContent("Would you like to top up your hitPoints with your exp?\n yes (Y) no(N)");
 		topUp = in.nextLine();
 		switch (topUp.toLowerCase()) {
 			case "y":
-				if (hero.getExp() - (100 - hero.getHelm()) > 0) {
-					hero.setExp(hero.getExp() - (100 - hero.getHelm()));
-					hero.setHelm(100);
+				if (hero.getExp() - (100 - hero.getHitPoints()) > 0) {
+					hero.setExp(hero.getExp() - (100 - hero.getHitPoints()));
+					hero.setHitPoints(100);
 				} else if (hero.getExp() > 0) {
-					hero.setHelm(hero.getExp());
+					hero.setHitPoints(hero.getExp());
 					hero.setExp(0);
 				} else {
-					new PrintContent("Not enough EXP to restore helm");
+					new PrintContent("Not enough EXP to restore hitPoints");
 				}
 				break;
 			case "n":
 				new Shop();
 			default:
 				new PrintContent("Invalid comand");
-				buyHelm();
+				buyHitPoints();
 				break;
 		}
 	}

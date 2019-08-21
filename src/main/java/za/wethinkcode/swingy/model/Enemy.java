@@ -7,11 +7,11 @@ public class Enemy {
 	private int level = new Hero().getHeroLevel() + 1;
 	private int attack = getEnemy(20) * level;
 	private int defense = getEnemy(20) * level;
-	private int helm = getEnemy(20) * level;
+	private int hitPoints = getEnemy(20) * level;
 
 	public Enemy(int level) {
 		if (this.level <= 0) {
-			this.level = 2;
+			this.level = 1;
 		}
 		this.level = level;
 	}
@@ -30,7 +30,7 @@ public class Enemy {
 		return defense;
 	}
 
-	public int getHelm() {
-		return helm;
+	public int getHitPoints() {
+		return hitPoints;
 	}
 }

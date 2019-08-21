@@ -17,7 +17,6 @@ public class Save {
         //        WRITE PLAYER DATA TO FILE
         if (hero.getName() != null) {
             try {
-                // System.out.println("writing");
                 writer = new PrintWriter(new File("../SwingyGameSave.log"));
                 for (int i = 0; i < arrListHeroes.size(); i++) {
                     writer.write(arrListHeroes.get(i) + "\n");

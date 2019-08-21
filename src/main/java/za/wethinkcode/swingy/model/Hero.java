@@ -9,7 +9,7 @@ public class Hero {
 	static int exp = 0;
 	static int attack = 50;
 	static int defense = 50;
-	static int helm = 50;
+	static int hitPoints = 50;
 	static int coordenateX = 0;
 	static int coordenateY = 0;
 	static int mapSize = 0;
@@ -75,6 +75,9 @@ public class Hero {
 
 	public void setHeroLevel(int heroLevel) {
 		this.heroLevel = heroLevel;
+		if (this.heroLevel <= 0) {
+			this.heroLevel++;
+		}
 		if (exp > 0 && exp <= 1000){
 			this.heroLevel = 1;
 		} else if (exp > 1000 &&  exp <= 2450) {
@@ -130,16 +133,16 @@ public class Hero {
 		}
 	}
 
-	public int getHelm() {
-		return helm;
+	public int getHitPoints() {
+		return hitPoints;
 	}
 
-	public void setHelm(int helm) {
-		this.helm = helm;
-		if (helm < 0){
-			this.helm = 0;
-		} else if (this.helm > 100){
-		this.helm = 100;
+	public void setHitPoints(int hitPoints) {
+		this.hitPoints = hitPoints;
+		if (hitPoints < 0){
+			this.hitPoints = 0;
+		} else if (this.hitPoints > 100){
+		this.hitPoints = 100;
 		}
 	}
 

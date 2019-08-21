@@ -38,7 +38,7 @@ public class InitHero {
 					hero.setExp(Integer.parseInt( heroList[choice][3]));
 					hero.setAttack(Integer.parseInt( heroList[choice][4]));
 					hero.setDefense(Integer.parseInt( heroList[choice][5]));
-					hero.setHelm(Integer.parseInt( heroList[choice][6]));
+					hero.setHitPoints(Integer.parseInt( heroList[choice][6]));
 					hero.setHeroLevel(Integer.parseInt( heroList[choice][2]));
 					hero.setIndex(choice);
 					new PrintContent("\n\n");
@@ -80,8 +80,8 @@ public class InitHero {
 				hero.getExp() + "\t" +
 				hero.getAttack() + "\t" +
 				hero.getDefense() + "\t" +
-				hero.getHelm();
+				hero.getHitPoints();
 		heroesArrList.set(hero.getIndex(), currentHero);
-		System.out.println("\n");
+		new PrintContent("\n");
 	}
 }

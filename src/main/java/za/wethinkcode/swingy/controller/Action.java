@@ -12,9 +12,11 @@ import java.util.Scanner;
 public class Action {
 	Hero hero = new Hero();
 	Enemy enemy = new Enemy(hero.getHeroLevel());
-	private int attack  = 0;
-	private int defense = 0;
-	private int helm    = 0;
+
+	private int attack			= 0;
+	private int defense			= 0;
+	private int hitPoints		= 0;
+
 	public Action() {
 	}
 
@@ -25,15 +27,16 @@ public class Action {
 		while(choice == null) {
 			new PrintContent("You have encountered an enemy, Do you want to fight or run?");
 //            Hero Spects
-			new PrintContent("Hero Attack:" + hero.getAttack() + "\t" + "Hero Defence: " + hero.getDefense() + "\t" + "Hero Helm: " + hero.getHelm());
+			new PrintContent("Hero Attack:" + hero.getAttack() + "\t" + "Hero Defence: " + hero.getDefense() + "\t" + "Hero hitPoints: " + hero.getHitPoints());
 //            Enemy Spects
 			attack = enemy.getAttack();
 			defense = enemy.getDefense();
-			helm = enemy.getHelm();
-			new PrintContent("Enemy Attack:" + attack + "\t" + "Enemy Defence: " + defense + "\t" + "Enemy Helm: " + helm);
+			hitPoints = enemy.getHitPoints();
+			new PrintContent("Enemy Attack:" + attack + "\t" + "Enemy Defence: " + defense + "\t" + "Enemy hitPoints: " + hitPoints);
 			choice = input.nextLine();
 			switch (choice.toLowerCase()) {
-				case "fight": fight(hero);
+				case "fight": 
+					fight(hero);
 					break;
 				case "run":
 					run(hero);
@@ -109,7 +112,7 @@ public class Action {
 	public void fight(Hero hero) {
 		hero.setAttack(hero.getAttack() - enemy.getDefense());
 		hero.setDefense(hero.getDefense() - enemy.getAttack());
-		hero.setHelm(hero.getHelm() - enemy.getHelm());
+		hero.setHitPoints(hero.getHitPoints() - enemy.getHitPoints());
 
 		if (hero.getDefense() > 0) {		// if hero Survives
 			if (hero.getAttack() > 0){
