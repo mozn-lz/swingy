@@ -1,5 +1,6 @@
 package za.wethinkcode.swingy.view.gui;
 
+import za.wethinkcode.swingy.model.Hero;
 import za.wethinkcode.swingy.model.InitHero;
 import za.wethinkcode.swingy.view.GuiMain;
 import za.wethinkcode.swingy.view.console.PrintContent;
@@ -10,12 +11,13 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class SelectPlayer  {
 
-	public SelectPlayer() {
-	}
+	public SelectPlayer() {}
 
+	Hero hero = new Hero();
 	public JPanel selectPlayerPanel = new JPanel();
 	JPanel heroListPanel = new JPanel();
 	JLabel heroListTitle = new JLabel("Our Brave Heroes");
@@ -24,17 +26,18 @@ public class SelectPlayer  {
 	JTextArea diaplayStats = new JTextArea();
 	JButton goHeroButton, newHeroButton;
 	JList  heroJList = new JList();
-	String chosenHero = null;
+	// String chosenHero = null;
+	int heroIndex = -5;
 	String[] heroes = {"Ichigo", "Vegeta", "Naruto", "Sitama", "Eren", "Kirito"};
 //	String[] demoHeroes = {
 //		// name  cls   lv   xp  At  Df  ht
 //		"Ichigo	death	0	0	50	20	40", "Vegeta	Saiyan	0	0	50	40	40",
 //		"Naruto	Ninja	0	0	50	40	40", "Sitama	Human	0	0	100	10	100",
-//		"Eren	Titan	0	0	40	40	30","Kirito	Gamer	0	0	30	70	50"}
-//		;
+//		"Eren	Titan	0	0	40	40	30","Kirito	Gamer	0	0	30	70	50"};
 
-        String [] demoHeroes = new InitHero().getHeroes().toArray(new String[0]);      // untested code    -> if any errors delete this and uncomment above
-//        String[] heroes  = new InitHero().getHeroes().names;
+	ArrayList<String> demoHeroes = new InitHero().getHeroes();
+	// String [] demoHeroes = new InitHero().getHeroes().toArray(new String[0]);      // untested code    -> if any errors delete this and uncomment above
+	// String[] heroes  = new InitHero().getHeroes().names;
 
 	public void createMap() {
 /**************************** HERO LIST PANEL ****************************/
@@ -42,7 +45,7 @@ public class SelectPlayer  {
 		heroListPanel.setBackground(Color.GRAY);
 		heroListPanel.setBorder(BorderFactory.createLoweredBevelBorder());
 
-		 heroJList.setModel(new AbstractListModel() {			//	+list start
+		heroJList.setModel(new AbstractListModel() {			//	+list start
 			public int getSize() {
 				return heroes.length;
 			}
@@ -50,29 +53,29 @@ public class SelectPlayer  {
 				return heroes[i];
 			}
 		});
-		 heroJList.addListSelectionListener(new ListSelectionListener() {
+		heroJList.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent evt) {
 				heroListValueChanged(evt);
 			}
 		});			//	-List End
 		heroJList.setVisibleRowCount(20);
 		heroListPanel.add( heroJList);
-		final JTextField createHeroTexfield = new JTextField(20);
-		createHeroTexfield.setText("New Hero Name");
-		heroListPanel.add(createHeroTexfield);
+		// final JTextField createHeroTexfield = new JTextField(20);
+		// createHeroTexfield.setText("New Hero Name");
+		// heroListPanel.add(createHeroTexfield);
 		heroListPanel.add(newHeroButton = new JButton("Create new Hero"));
 		newHeroButton.addActionListener(new ActionListener(){		//	Selecthero button
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String newHero = createHeroTexfield.getText().replaceAll("\\s","");
-				new PrintContent("newHero = " + newHero);
-				if (newHero != null) {
+				// String newHero = createHeroTexfield.getText().replaceAll("\\s","");
+				// new PrintContent("newHero = " + newHero);
+				// if (newHero != null) {
 					new PrintContent("going to CreatePlayer()");
 					new GuiMain("CreatePlayer");
-					JOptionPane.showMessageDialog(null, newHero + "... fearsome name.");
-				} else {
-					JOptionPane.showMessageDialog(null, "It appears there is an error on your Heroes name");
-				}
+					// JOptionPane.showMessageDialog(null, newHero + "... fearsome name.");
+				// } else {
+				// 	JOptionPane.showMessageDialog(null, "It appears there is an error on your Heroes name");
+				// }
 			}
 		});
 /**************************** HERO STATS PANEL ****************************/
@@ -87,8 +90,11 @@ public class SelectPlayer  {
 		goHeroButton.addActionListener(new ActionListener(){		//	Selecthero button		
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (chosenHero != null) {
-					JOptionPane.showMessageDialog(null, chosenHero + " good choice");
+				if (heroIndex != -5) {
+					new InitHero().assignHero(heroIndex);
+					System.out.println("demoHeroes.get(heroIndex) " + demoHeroes.get(heroIndex));
+					JOptionPane.showMessageDialog(null, hero.getName() + " good choice");
+
 				} else {
 					JOptionPane.showMessageDialog(null, "Choose a charecter first");
 				}
@@ -106,11 +112,12 @@ public class SelectPlayer  {
 		if (! heroJList.getValueIsAdjusting()) {
 			for (int i = 0; i < heroes.length; i++) {
 				if ( heroJList.getSelectedValue() == heroes[i]) {
-					str1 = demoHeroes[i];
+					str1 = demoHeroes.get(i);
 					heroAttr = str1.split("\t");
 					disp = "HeroName: \t" + heroAttr[0] + "\n" + "HeroClass: \t" + heroAttr[1] + "\n" + "Level: \t" + heroAttr[2] + "\n" + "Experience: \t" + 
 						heroAttr[3] + "\n" + "Attack: \t" + heroAttr[4] + "\n" + "Defense: \t" + heroAttr[5] + "\n" + "HitPoints: \t" + heroAttr[6];
-					chosenHero = heroAttr[0];
+					// chosenHero = heroAttr[0];
+					heroIndex = i;
 				}
 			}
 			if (disp != null) {

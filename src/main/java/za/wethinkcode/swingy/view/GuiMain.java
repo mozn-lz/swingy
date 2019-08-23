@@ -12,18 +12,20 @@ public class GuiMain extends JFrame {
     public GuiMain(String panel) {
         new PrintContent("Hello from GuiMain");
         new PrintContent("1. panel = " + panel);
-        new PrintContent("2. panel = " + panel);
+		new PrintContent("2. panel = " + panel);
+		panel = "CreatePlayer";
         switch (panel) {
+            case "CreatePlayer":
+				new PrintContent("GuiMain() -> panel = " + panel);
+				// CreatePlayer createPlayer = new CreatePlayer();
+                getContentPane().add(new CreatePlayer().heroDetails);
+            break;
             case "selectPlayer":
                 new PrintContent("going to selectPlayer()");
                 new PrintContent("panel = " + panel);
                 SelectPlayer selectPlayer = new SelectPlayer();
                 selectPlayer.createMap();
                 getContentPane().add(selectPlayer.selectPlayerPanel);
-            break;
-            case "CreatePlayer":
-                new PrintContent("panel = " + panel);
-                getContentPane().add(new CreatePlayer().heroDetails);
             break;
             default:
                 new PrintContent("Done");

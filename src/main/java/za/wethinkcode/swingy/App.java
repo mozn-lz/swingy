@@ -3,6 +3,7 @@ package za.wethinkcode.swingy;
 // import za.wethinkcode.swingy.model.InitGame;
 import za.wethinkcode.swingy.model.InitHero;
 import za.wethinkcode.swingy.model.PlayGame;
+import za.wethinkcode.swingy.view.GuiMain;
 import za.wethinkcode.swingy.view.console.PrintContent;
 
 import java.io.*;
@@ -12,9 +13,9 @@ public class App {
 	public static void main(String[] args) {
 		String[] heroes = {
 				// name  cls   lv   xp  At  Df  ht
-				"Ichigo	death	0	0	50	20	40", "Vegeta	Saiyan	0	0	50	40	40",
-				"Naruto	Ninja	0	0	50	40	40", "Sitama	Human	0	0	100	10	100",
-				"Erren.	Titan	0	0	40	40	30", "Kirito	Gamer	0	0	30	70	50"};
+				"Ichigo	death	0	0	80	70	40", "Vegeta	Saiyan	0	0	70	40	40",
+				"Naruto	Ninja	0	0	70	50	40", "Sitama	Human	0	0	100	100	100",
+				"Erren	Titan	0	0	40	60	30", "Kirito	Gamer	0	0	50	70	50"};
 
 		ArrayList<String> arrHeros = new ArrayList<String>();
 		File gameSave = new File("../SwingyGameSave.log");		// The name of the file to open.
@@ -53,20 +54,24 @@ public class App {
 			if (args[0].toLowerCase() == "console" || args[0].toLowerCase() == "gui") {
 				view = args[0].toLowerCase();
 			} else {
-				view = "console";
+				// view = "console";
+				view = "gui";
 			}
 		}
+		view = "gui";
+		System.out.println("view: " + view);
 		switch (view) {
 			case "console":
-				new PlayGame();
+				new PlayGame();	
 				break;
 			case "gui":
-				new PlayGame();
+			new GuiMain("selectPlayer");
 				break;
 			default:
-				new PlayGame();
+				// new GuiMain("selectPlayer");
+				// new PlayGame();
 		}
-		new PrintContent("Main: Swing missed you Mk");
+		new PrintContent("-_-_-_-_-_ SWINGY _-_-_-_-_-");
 	}
 
 	public static boolean isInteger(String s) {

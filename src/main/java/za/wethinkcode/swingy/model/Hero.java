@@ -13,6 +13,46 @@ public class Hero {
 	static int coordenateX = 0;
 	static int coordenateY = 0;
 	static int mapSize = 0;
+	static int index = 0;
+	static int attackMax = 100;
+	static int defenseMax = 100;
+	static int hitPointsMax = 100;
+
+	public String getArtefact() {
+		int score = (attack + defense + hitPoints) % 5;
+		
+		if (score == 0) {
+			attack = attackMax = 100 + attack * heroLevel;
+			defenseMax = 100;
+			hitPointsMax = 100;
+			return ("attack");
+		} else if (score == 1) {
+			defense = defenseMax = 100 + defense * heroLevel;
+			attackMax = 100;
+			hitPointsMax = 100;
+			return ("defense");
+		} else if (score == 2) {
+			hitPoints = hitPointsMax = 100 + hitPoints * heroLevel;
+			attackMax = 100;
+			defenseMax = 100;
+			return ("hit Points");
+		} else {
+			attackMax = 100;
+			defenseMax = 100;
+			hitPointsMax = 100;
+		}
+		return ("noBonus");
+	}
+
+	public void setAttackMax () {
+		this.attackMax = 100;
+	}
+	public void setDefenseMax () {
+		this.defenseMax = 100;
+	}
+	public void setHitPointsMax () {
+		this.hitPointsMax = 100;
+	}
 
 	public static int getIndex() {
 		return index;
@@ -21,8 +61,6 @@ public class Hero {
 	public static void setIndex(int index) {
 		Hero.index = index;
 	}
-
-	static int index = 0;
 
 	public int getCoordenateX() {
 		return coordenateX;
@@ -113,7 +151,7 @@ public class Hero {
 		this.attack = attack;
 		if (this.attack < 0) {
 			this.attack = 0;
-		} else if (this.attack > 100) {
+		} else if (this.attack > attackMax) {
 				this.attack = 100;
 		}
 	}
@@ -128,7 +166,7 @@ public class Hero {
 //			dead();
 			this.defense = 0;
 			new Terminate("dead");
-		} else if (this.defense > 100) {
+		} else if (this.defense > defenseMax) {
 			this.defense = 100;
 		}
 	}
@@ -141,7 +179,7 @@ public class Hero {
 		this.hitPoints = hitPoints;
 		if (hitPoints < 0){
 			this.hitPoints = 0;
-		} else if (this.hitPoints > 100){
+		} else if (this.hitPoints > hitPointsMax){
 		this.hitPoints = 100;
 		}
 	}

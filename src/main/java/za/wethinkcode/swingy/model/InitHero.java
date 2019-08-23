@@ -31,15 +31,10 @@ public class InitHero {
 			int choice = 42;
 			try {
 				choice = in.nextInt();
-				if (choice >=1 && choice <= heroList.length) {
+				if (choice >=1 && choice <= heroesArrList.size()) {
 					choice--;
-					hero.setName(heroList[choice][0]);
-					hero.setHeroClass(heroList[choice][1]);
-					hero.setExp(Integer.parseInt( heroList[choice][3]));
-					hero.setAttack(Integer.parseInt( heroList[choice][4]));
-					hero.setDefense(Integer.parseInt( heroList[choice][5]));
-					hero.setHitPoints(Integer.parseInt( heroList[choice][6]));
-					hero.setHeroLevel(Integer.parseInt( heroList[choice][2]));
+
+					assignHero(choice) ;
 					hero.setIndex(choice);
 					new PrintContent("\n\n");
 					return;
@@ -54,6 +49,16 @@ public class InitHero {
 		}
 	}
 
+	public void assignHero(int choice){
+		String [][] heroList =  displayHeroList(heroesArrList);
+		hero.setName(heroList[choice][0]);
+		hero.setHeroClass(heroList[choice][1]);
+		hero.setExp(Integer.parseInt( heroList[choice][3]));
+		hero.setAttack(Integer.parseInt( heroList[choice][4]));
+		hero.setDefense(Integer.parseInt( heroList[choice][5]));
+		hero.setHitPoints(Integer.parseInt( heroList[choice][6]));
+		hero.setHeroLevel(Integer.parseInt( heroList[choice][2]));
+	}
 
 	private String[][] displayHeroList(ArrayList<String> heroes) {
 		String [][] list = new String[heroes.size()][7];
